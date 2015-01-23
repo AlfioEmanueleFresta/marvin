@@ -78,13 +78,14 @@ angular.module('starter.controllers', [])
     $scope.api('login', {}, function(x) {
       var loginWindow;
       loginWindow = window.open(x.risposta.url, '_blank', 'location=no,toolbar=no');
-      setInterval(
+      var refresher = setInterval(
         function() {
           $scope.controllaConnessione(function(r){
             if ( r ) {
               loginWindow.close();
               $ionicLoading.hide();
               $ionicSideMenuDelegate.toggleLeft();
+              clearInterval(refresher);
             }
           })
         }, 3500);
