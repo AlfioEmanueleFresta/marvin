@@ -1,0 +1,36 @@
+<ion-view cache-view="false" view-title="<i class='icon ion-star'></i> Mie attivit&agrave;">
+
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+<ion-content>
+
+<div class="card" ng-if="!partecipazioni.lista.length">
+  <div class="item item-text-wrap item-icon-left">
+    <i class="icon ion-checkmark-circled"></i>
+    Non hai ancora partecipato ad alcuna attivit&agrave;.
+  </div>
+</div>  
+
+<div class="list card" ng-repeat="e in partecipazioni.lista">
+
+  <div class="item item-icon-left item-button-right">
+    <i class="icon" ng-class="icone[e.stato.id]"></i>
+    <h2>{{e.turno.nome}}
+      ({{ e.turno.inizio.date | dataTurno | date: "d MMM yyyy, HH:mm" }} 
+      &mdash; {{ e.turno.fine.date | dataTurno | date: "HH:mm" }})
+    </h2>
+    <p>{{e.attivita.nome}}</p>
+    <button class="button button-outline button-assertive" ng-if="e.turno.ritirabile" ng-click="ritira(e.id)">
+      Ritirati
+    </button>
+  </div>
+  <div class="item" >
+    {{e.stato.nome}}
+  </div>
+
+</div>
+
+
+</ion-content>
+</ion-view>

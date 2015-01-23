@@ -1,0 +1,34 @@
+<ion-view view-title="<i class='icon ion-ribbon-b'></i> Delegati">
+
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+<ion-content>
+
+
+<div class="card" ng-if="!delegati.lista.length">
+  <div class="item item-text-wrap item-icon-left">
+    <i class="icon ion-checkmark-circled"></i>
+    Questa rubrica &egrave; vuota.
+  </div>
+</div>  
+
+<div class="list card" ng-repeat="e in delegati.lista">
+
+  <div class="item item-avatar item-button-right" 	>
+    <img src="{{e.avatar['20']}}" />
+    <h2> {{ e.nome }} {{ e.cognome }}</h2>
+    <p><a href="mailto:{{e.email}}" target="_system">{{ e.email }}</a></p>
+    <a class="button button-calm" href="tel:{{e.numero}}">
+      <i class="icon ion-ios7-telephone"></i>
+    </a>
+  </div>
+  <div class="item" >
+    <p ng-repeat="d in e.deleghe">{{ applicazioni[d.applicazione] }} presso il {{ d.comitato }}</p>
+  </div>
+
+</div>
+
+
+</ion-content>
+</ion-view>

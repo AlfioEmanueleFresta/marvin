@@ -1,0 +1,26 @@
+<ion-view cache-view="false" view-title="{{ msg.oggetto }}">
+
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+<ion-content>
+
+<div class="list card">
+
+  <div class="item item-avatar item-button-right">
+    <img ng-if="!msg.mittente.avatar" 
+        src="https://gaia.cri.it/upload/avatar/placeholder/20.jpg">
+    <img ng-if="msg.mittente.avatar" src="{{ msg.mittente.avatar['20'] }}">
+
+    <h2>{{ msg.oggetto }}</h2>
+    <p>{{ msg.timestamp * 1000 | date : "d MMMM yyyy, HH:mm" }}</p>
+
+  
+
+  </div>
+
+  <div class="item item-body" ng-bind-html="msg.corpo">
+  </div>
+
+</ion-content>
+</ion-view>

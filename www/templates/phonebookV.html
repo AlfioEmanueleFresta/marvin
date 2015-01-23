@@ -1,0 +1,30 @@
+<ion-view view-title="<i class='icon ion-person-stalker'></i> Rubrica volontari">
+
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+<ion-content>
+
+<div class="card" ng-if="!volontari.lista.length">
+  <div class="item item-text-wrap item-icon-left">
+    <i class="icon ion-checkmark-circled"></i>
+    Questa rubrica &egrave; vuota.
+  </div>
+</div>  
+
+<div class="list card" ng-if="volontari.lista.length" >
+
+  <div class="item item-avatar item-button-right" ng-repeat="e in volontari.lista">
+    <img src="{{e.avatar['20']}}" />
+    <h2> {{ e.nome }} {{ e.cognome }}</h2>
+    <p><a href="mailto:{{e.email}}">{{ e.email }}</a></p>
+    <a class="button button-calm" ng-if="e.numero" target="_system" href="tel:{{e.numero}}">
+      <i class="icon ion-ios7-telephone"></i>
+    </a>
+  </div>
+
+</div>
+
+
+</ion-content>
+</ion-view>

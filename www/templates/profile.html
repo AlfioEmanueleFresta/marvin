@@ -1,0 +1,87 @@
+<ion-view view-title="Il tuo profilo">
+<ion-content>
+
+  <div class="card" ng-if="!myProfile">
+    <div class="item item-text-wrap">
+      Caricamento in corso...
+    </div>
+  </div>  
+
+  <div class="list card" ng-if="myProfile">
+
+    <div class="item item-avatar">
+      <img src="{{ myProfile.anagrafica.avatar['20'] }}">
+      <h2>{{ myProfile.anagrafica.nome }} {{ myProfile.anagrafica.cognome }}</h2>
+      <p>{{ myProfile.anagrafica.email }}</p>
+    </div>
+
+
+  </div>
+
+  <div class="list card" ng-if="myProfile">
+    <div class="item item-divider">
+      <h2>Appartenenze</h2>
+    </div>
+
+    <div class="item" ng-repeat="app in myProfile.appartenenze">
+      <h2>{{ app.stato.nome }} presso il Comitato di {{ app.comitato.nome }}</h2>
+      <p>Dal 
+        <strong>{{ app.inizio | date : "d MMMM yyyy" }}</strong>
+        <span ng-if="app.fine">
+         fino al 
+         <strong>{{ app.fine | date : "d MMMM yyyy" }}</strong>
+        </span>
+        <span ng-if="!app.fine">
+         <strong>fino ad ora</strong>
+        </span>
+      </p>
+    </div>
+
+  </div>
+
+  <div class="list card" nf-if="myProfile">
+    <div class="item item-divider">
+      <h2>Dati anagrafici</h2>
+    </div>
+
+    <div class="item">
+      <h2>{{ myProfile.anagrafica.email }}</h2>
+      <p>Indirizzo email</p>
+    </div>
+
+    <div class="item" ng-if="myProfile.anagrafica.emailServizio">
+      <h2>{{ myProfile.anagrafica.emailServizio }}</h2>
+      <p>Indirizzo email di servizio</p>
+    </div>
+
+    <div class="item">
+      <h2>{{ myProfile.anagrafica.cellulare }}</h2>
+      <p>Numero di telefono</p>
+    </div>
+
+    <div class="item" ng-if="myProfile.anagrafica.cellulareServizio">
+      <h2>{{ myProfile.anagrafica.cellulareServizio }}</h2>
+      <p>Numero di telefono di servizio</p>
+    </div>
+
+    <div class="item">
+      <h2>{{ myProfile.anagrafica.codiceFiscale }}</h2>
+      <p>Codice Fiscale </p>
+    </div>
+
+    <div class="item">
+      <h2>{{ myProfile.anagrafica.dataNascita }}</h2>
+      <p>Data di nascita </p>
+    </div>
+
+    <div class="item">
+      <h2>{{ myProfile.anagrafica.sesso }}</h2>
+      <p>Sesso </p>
+    </div>
+
+  </div>
+
+
+
+</ion-content>
+</ion-view>

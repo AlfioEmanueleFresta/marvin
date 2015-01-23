@@ -1,0 +1,65 @@
+<ion-view view-title="Gaia Marvin">
+
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  
+<ion-content>
+
+  <div class="card" >
+
+    <img class="full-image" src="img/logotipo.png">
+  </div>
+
+
+  <div class="card" ng-if="!session.sid">
+
+    <div class="item item-divider">
+      Accesso richiesto
+    </div>
+
+    <div class="item item-text-wrap">
+
+      <p>Effettua l'accesso a Gaia per continuare.</p>
+
+      <button ng-click="accedi()" class="button button-block button-balanced">
+        Accedi con Gaia
+      </button>
+
+
+    </div>
+
+    <div class="item item-text-wrap">
+      <p>Non sei ancora registrato?</p>
+        <a target="_system" href="https://gaia.cri.it" class="button button-block button-assertive">
+        Registrati
+      </a>
+    </div>
+
+  </div>
+
+   <div class="card" ng-if="session.sid && session.valid">
+
+    <div class="item item-divider">
+      Bentornato in Gaia
+    </div>
+
+    <div class="item item-text-wrap">
+      <p>Ciao, {{session.user.nome}}</p>
+
+      <a href="#/app/profile" class="button button-block button-positive">
+        Vai al tuo profilo
+      </a>     
+
+
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="item item-divider">
+      &copy;2015 Croce Rossa Italiana
+    </div>
+  </div>
+
+</ion-content>
+</ion-view>

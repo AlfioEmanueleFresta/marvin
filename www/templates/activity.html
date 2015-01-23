@@ -1,0 +1,73 @@
+<ion-view view-title="Dettagli attivit&agrave;">
+
+
+<ion-content>
+
+
+<div class="list card" ng-if="activity">
+
+  <div class="item item-button-right">
+    <h2>{{ activity.nome }}</h2>
+    <p>{{ activity.luogo }}</p>
+
+    <a target="_system" href="https://maps.google.com/?q={{ activity.coordinate[0] }},{{ activity.coordinate[1] }}" 
+    class="button button-calm button-light ">
+      <i class="icon ion-map"></i>
+      
+    </a>
+
+  </div>
+
+  <div class="item item-body">
+    <p ng-bind-html="activity.descrizione"></p>
+  </div>
+
+
+</div>
+
+<div class="list card" ng-if="activity">
+  <div class="item item-divider">
+    Referente attivit&agrave;
+  </div>
+
+  <div class="item item-button-right">
+    <h2>{{ activity.referente.nome }}</h2>
+    <p>
+    	<a href="mailto:{{activity.referente.email}}">
+    	{{ activity.referente.email }}
+    	</a>
+    </p>
+    <a class="button button-positive" href="tel:{{activity.referente.numero}}">
+      <i class="icon ion-ios7-telephone"></i> &nbsp;Chiama
+    </a>
+  </div>
+</div>
+
+<div class="list card" ng-if="activity">
+	<div class="item item-divider">
+	  Turni futuri
+	</div>
+
+    <div class="item item-button-right" 
+    	ng-repeat="turno in activity.turni" ng-if="turno.futuro">
+      <h2 class="assertive-border">{{ turno.nome }}
+      	<span ng-if="turno.scoperto">(Scoperto!)</span>
+      </h2>
+      <p><strong>{{ turno.inizio.date | dataTurno | date: "d MMM yyyy, HH:mm" }} 
+      &mdash; {{ turno.fine.date | dataTurno | date: "HH:mm" }}</strong></p>
+
+      <p ng-if="turno.partecipa">Hai dato disponibilit&agrave; per questo turno. Contatta il responsabile se vuoi ritirare la partecipazione.</p>
+
+      <button ng-if="turno.puoRichiedere" 
+        class="button button-outline button-balanced"
+        ng-click="partecipa(turno.turno.id)">
+      	Partecipa
+  	  </button>
+
+    </div>
+
+</div>
+
+
+</ion-content>
+</ion-view>

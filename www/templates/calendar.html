@@ -1,0 +1,53 @@
+<ion-view cache-view="false" view-title="<i class='icon ion-calendar'></i> Attivit&agrave;">
+
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+<ion-content>
+
+
+<div class="card">
+	<div class="item" style="text-align: center;">
+		<h2>{{ day | date: 'dd MMM yyyy' }}</h2>
+	</div>
+</div>
+
+
+<div class="list card" ng-if="activities.list.length">
+
+
+  <a class="item" ng-repeat="e in activities.list"
+  	href="#/app/activity/{{ e.attivita.id }}"
+  	>
+    <h2>{{ e.inizio | date: "HH:mm" }} Turno <strong>{{ e.turno.nome }}</strong></h2>
+    <p><strong>{{ e.attivita.nome }}</strong></p>
+  </a>
+
+</div>
+
+
+</ion-content>
+<ion-footer>
+<div class="tabs">
+  <a class="tab-item item-icon-left" 
+  	href="#/app/activities/{{ prev | date: 'yyyy-MM-dd' }}">
+    <i class="icon ion-arrow-left-b"></i>
+    <strong>
+    	{{ prev | date: 'dd MMM yyyy' }}
+    </strong>
+
+  </a>
+  <a class="tab-item" href="#/app/activities/">
+    Vai a oggi
+  </a>
+  <a class="tab-item item-icon-right"
+    href="#/app/activities/{{ succ | date: 'yyyy-MM-dd' }}">
+    <i class="icon ion-arrow-right-b"></i> 
+    <strong > 
+    	{{ succ | date: 'dd MMM yyyy' }} 
+	 </strong>
+  </a>
+</div>
+
+</ion-footer>
+</ion-view>

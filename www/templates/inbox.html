@@ -1,0 +1,57 @@
+<ion-view cache-view="false" view-title="<i class='icon ion-email'></i> Posta" ng-init="init()">
+<ion-header  class="has-tabs-top">
+  <div class="tabs-striped tabs-top">
+      <div class="tabs tabs-icon-left">
+          <a class="tab-item " ng-class="{'active': viewing == 'ingresso'}" href="#/app/mail/ingresso">
+            <i class="icon ion-log-in"></i>
+            In ingresso
+          </a>
+          <a class="tab-item " ng-class="{'active': viewing == 'uscita'}" href="#/app/mail/uscita">
+            <i class="icon ion-log-out"></i>
+            In uscita
+          </a>
+        </div>
+  </div>
+</ion-header>
+
+<ion-content class="has-tabs-top">
+
+
+
+  <div class="card" ng-if="pages.totalPages && !messages.list.length">
+    <div class="item item-text-wrap item-icon-left">
+      <i class="icon ion-checkmark-circled"></i>
+      Nessun messaggio qui.
+    </div>
+  </div>  
+
+  <div class="list card" ng-if="pages.totalPages && messages.list.length">
+
+    <a class="item item-avatar" ng-repeat="msg in messages.list"
+      href="#/app/mail/{{ viewing }}/id/{{ msg._id.$id }}">
+
+      <img ng-if="!msg.mittente.avatar" 
+          src="https://gaia.cri.it/upload/avatar/placeholder/20.jpg">
+      <img ng-if="msg.mittente.avatar" src="{{ msg.mittente.avatar['20'] }}">
+
+      <h2>{{ msg.oggetto }}</h2>
+
+      <p ng-if="!msg.mittente">Squadra di Supporto di Gaia</p>
+      <p ng-if="msg.mittente">
+        <span ng-if="!msg.mittente.nome">Attendere...</span>
+        {{msg.mittente.nomeCompleto}}
+      </p>
+
+    </a>
+
+  </div>  
+
+
+  <ion-infinite-scroll
+    on-infinite="loadMore()"
+    distance="1%">
+  </ion-infinite-scroll>
+</ion-content>
+
+
+</ion-view>
