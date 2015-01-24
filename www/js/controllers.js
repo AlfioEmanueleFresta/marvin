@@ -123,13 +123,13 @@ angular.module('starter.controllers', [])
 
   $scope.applicazioni = {
       "10"    :  "Attività",
-      "30"   :  "Autoparco",
-      "40"  :  "Presidente",
-      "50"   :  "Obiettivo strategico",
-      "60"          :  "Centrale Operativa",
-      "70"        :  "Ufficio Soci",
-      "80"     :  "Ufficio Patenti",
-      "90"  :  "Resp. Formazione"
+      "30"   :  "Presidente",
+      "40"  :  "Obiettivo strategico",
+      "50"   :  "Centrale Operativa",
+      "60"          :  "Ufficio Soci",
+      "70"        :  "Ufficio Patenti,
+      "80"     :  "Resp. Formazione",
+      "90"  :  "Resp. Autoparco"
   };
 
   $scope.delegati = {
