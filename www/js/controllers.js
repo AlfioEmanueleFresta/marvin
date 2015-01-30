@@ -4,7 +4,7 @@ var DEBUG = true;
 
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $http, $location, $timeout, $ionicLoading, $ionicSideMenuDelegate) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $http, $location, $timeout, $ionicLoading, $ionicSideMenuDelegate, $ionicPopup) {
   // Form data for the login modal
 
   $scope.base = 'https://gaia.cri.it/api.php?';
@@ -45,8 +45,13 @@ angular.module('starter.controllers', [])
       }).
       error(function(data, status, headers, config) {
         DEBUG && console.log("Error");
-        alert("Connessione fallita. Assicurati di essere connesso ad Internet e riapri Gaia-Marvin.");
-        navigator.app.exitApp();
+         var alertPopup = $ionicPopup.alert({
+           title: 'Connessione fallita',
+           template: 'Assicurati di essere connesso ad Internet e riapri Gaia-Marvin.'
+         });
+         alertPopup.then(function(res) {
+           navigator.app.exitApp();
+         });
       });
   }
   
@@ -165,7 +170,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('MyActivitiesCtrl', function($scope, $ionicLoading) {
+.controller('MyActivitiesCtrl', function($scope, $ionicLoading, $ionicPopup) {
 
   $scope.loginRequired();
   $ionicLoading.show({
@@ -192,16 +197,23 @@ angular.module('starter.controllers', [])
 
   $scope.ritira = function(partid) {
 
-    if ( !window.confirm('Sei sicuro di voler ritirare la tua partecipazione?') ) {
-      return;
-    }
+     var confirmPopup = $ionicPopup.confirm({
+       title: 'Ritira partecipazione',
+       template: 'Sicuro di voler ritirare la tua partecipazione?'
+     });
+     confirmPopup.then(function(res) {
+       if(!res) {
+          return;
+       }
+        
+      $ionicLoading.show({
+        template: 'Caricamento in corso...'
+      });
+      $scope.api('partecipazione:ritirati', {id:partid}, function(x) {
+        $scope.carica();
+      });
 
-    $ionicLoading.show({
-      template: 'Caricamento in corso...'
-    });
-    $scope.api('partecipazione:ritirati', {id:partid}, function(x) {
-      $scope.carica();
-    });
+     });
 
   };
 
@@ -347,7 +359,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('ActivityCtrl', function($scope, $stateParams, $ionicLoading, $location) {
+.controller('ActivityCtrl', function($scope, $stateParams, $ionicLoading, $location, $ionicPopup) {
   
   $scope.loginRequired();
 
@@ -369,18 +381,27 @@ angular.module('starter.controllers', [])
   };
 
   $scope.partecipa = function(turnoid) {
-    if ( !window.confirm("Sicuro di voler partecipare?") ) {
-      return;
-    }
-    $ionicLoading.show({
-      template: 'Caricamento in corso...'
-    });
-    $scope.api('turno:partecipa', {id:turnoid}, function(x) {
-      $ionicLoading.hide();
-      $scope.carica();
-      $location.path('/app/myactivities');
+
+   var confirmPopup = $ionicPopup.confirm({
+     title: 'Richiedi partecipazione',
+     template: 'Vuoi chiedere di poter partecipare a questo turno?'
+   });
+   confirmPopup.then(function(res) {
+     if(!res) {
+        return;
+     }
+
+      $ionicLoading.show({
+        template: 'Caricamento in corso...'
+      });
+      $scope.api('turno:partecipa', {id:turnoid}, function(x) {
+        $ionicLoading.hide();
+        $scope.carica();
+        $location.path('/app/myactivities');
+      });
     });
   }
+
   $scope.carica();
 
 });
