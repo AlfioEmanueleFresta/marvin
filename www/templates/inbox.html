@@ -28,7 +28,7 @@
   <div class="list card" ng-if="pages.totalPages && messages.list.length">
 
     <a class="item item-avatar" ng-repeat="msg in messages.list"
-      href="#/app/mail/{{ viewing }}/id/{{ msg._id.$id }}">
+      href="#/app/mail/{{ viewing }}/id/{{ msg.id }}">
 
       <img ng-if="!msg.mittente.avatar" 
           src="https://gaia.cri.it/upload/avatar/placeholder/20.jpg">

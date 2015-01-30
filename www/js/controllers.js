@@ -127,7 +127,7 @@ angular.module('starter.controllers', [])
       "40"  :  "Obiettivo strategico",
       "50"   :  "Centrale Operativa",
       "60"          :  "Ufficio Soci",
-      "70"        :  "Ufficio Patenti,
+      "70"        :  "Ufficio Patenti",
       "80"     :  "Resp. Formazione",
       "90"  :  "Resp. Autoparco"
   };
@@ -299,7 +299,7 @@ angular.module('starter.controllers', [])
 
   $scope.loginRequired();
   for ( i in $scope.messages.list ) {
-    if ( $scope.messages.list[i]._id.$id == $stateParams.msgid ) {
+    if ( $scope.messages.list[i].id == $stateParams.msgid ) {
       $scope.msg = $scope.messages.list[i];
     }
   }
