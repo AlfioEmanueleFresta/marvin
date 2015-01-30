@@ -45,6 +45,8 @@ angular.module('starter.controllers', [])
       }).
       error(function(data, status, headers, config) {
         DEBUG && console.log("Error");
+        alert("Connessione fallita. Assicurati di essere connesso ad Internet e riapri Gaia-Marvin.");
+        navigator.app.exitApp();
       });
   }
   
