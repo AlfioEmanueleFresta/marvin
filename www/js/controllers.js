@@ -349,6 +349,10 @@ angular.module('starter.controllers', [])
   
   $scope.loginRequired();
 
+  $scope.showPast = {
+    value: false
+  };
+
   $scope.carica = function() {
     $ionicLoading.show({
       template: 'Caricamento in corso...'

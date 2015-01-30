@@ -19,17 +19,19 @@
   <a class="item" ng-repeat="e in activities.list"
   	href="#/app/activity/{{ e.attivita.id }}"
   	>
-    <h2>{{ e.inizio | date: "HH:mm" }} Turno <strong>{{ e.turno.nome }}</strong></h2>
+    <h2>{{ e.inizio | date: "HH:mm" }} <strong>{{ e.turno.nome }}</strong></h2>
     <p><strong>{{ e.attivita.nome }}</strong></p>
   </a>
 
 </div>
 
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 
 </ion-content>
-<ion-footer>
+<ion-footer class="tabs-striped tabs-background-assertive tabs-color-light">
 <div class="tabs">
-  <a class="tab-item item-icon-left" 
+  <a class="tab-item item-icon-left active" 
   	href="#/app/activities/{{ prev | date: 'yyyy-MM-dd' }}">
     <i class="icon ion-arrow-left-b"></i>
     <strong>
@@ -37,10 +39,10 @@
     </strong>
 
   </a>
-  <a class="tab-item" href="#/app/activities/">
-    Vai a oggi
+  <a class="tab-item active" href="#/app/activities/">
+    Oggi
   </a>
-  <a class="tab-item item-icon-right"
+  <a class="tab-item item-icon-right active"
     href="#/app/activities/{{ succ | date: 'yyyy-MM-dd' }}">
     <i class="icon ion-arrow-right-b"></i> 
     <strong > 
