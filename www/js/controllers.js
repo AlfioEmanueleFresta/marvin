@@ -8,7 +8,7 @@ angular.module('starter.controllers', [])
   // Form data for the login modal
 
   $scope.base = 'https://gaia.cri.it/api.php?';
-  $scope.key = 'bb2c08ff4da11f0b590a7ae884412e2bfd8ac28a';
+  $scope.key = 'f9ae5f644e8c545818e05f5cc740037b85307332';
 
   $scope.session = {
     sid: window.localStorage['sid'],
