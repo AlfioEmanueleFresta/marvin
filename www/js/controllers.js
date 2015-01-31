@@ -5,6 +5,9 @@ var DEBUG = true;
 angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, $http, $location, $timeout, $ionicLoading, $ionicSideMenuDelegate, $ionicPopup) {
+  if(typeof analytics !== "undefined") { analytics.trackView("Schermata principale"); }
+
+
   // Form data for the login modal
 
   $scope.base = 'https://gaia.cri.it/api.php?';
@@ -45,6 +48,7 @@ angular.module('starter.controllers', [])
       }).
       error(function(data, status, headers, config) {
         DEBUG && console.log("Error");
+          $ionicLoading.hide();
          var alertPopup = $ionicPopup.alert({
            title: 'Connessione fallita',
            template: 'Assicurati di essere connesso ad Internet e riapri Gaia-Marvin.'
@@ -64,9 +68,12 @@ angular.module('starter.controllers', [])
       if ( !x.sessione.identificato ) {
         $scope.session.valid = false;
         $scope.session.sid   = null;
+        if(typeof analytics !== "undefined") { analytics.trackEvent('Login', 'Fallito'); }
       } else {
         $scope.session.valid = true;
         $scope.session.user  = x.sessione.utente;
+        if(typeof analytics !== "undefined") { analytics.setUserId(x.sessione.utente.id); }
+        if(typeof analytics !== "undefined") { analytics.trackEvent('Login', 'Ok'); }
         //$location.path('/app/profile');
       }
       callback(x.sessione.identificato);
@@ -105,6 +112,8 @@ angular.module('starter.controllers', [])
 })
 
 .controller('ProfileCtrl', function($scope, $ionicLoading) {
+  
+  if(typeof analytics !== "undefined") { analytics.trackView("Profilo Utente"); }
 
 
   $scope.loginRequired();
@@ -122,6 +131,8 @@ angular.module('starter.controllers', [])
 })
 
 .controller('PhonebookCtrl', function($scope, $ionicLoading) {
+
+  if(typeof analytics !== "undefined") { analytics.trackView("Rubrica Delegati"); }
 
   $scope.loginRequired();
   $ionicLoading.show({
@@ -153,6 +164,8 @@ angular.module('starter.controllers', [])
 
 .controller('PhonebookVCtrl', function($scope, $ionicLoading) {
 
+  if(typeof analytics !== "undefined") { analytics.trackView("Rubrica Volontari"); }
+
   $scope.loginRequired();
   $ionicLoading.show({
     template: 'Caricamento in corso...'
@@ -171,6 +184,8 @@ angular.module('starter.controllers', [])
 })
 
 .controller('MyActivitiesCtrl', function($scope, $ionicLoading, $ionicPopup) {
+
+  if(typeof analytics !== "undefined") { analytics.trackView("Mie attivita"); }
 
   $scope.loginRequired();
   $ionicLoading.show({
@@ -213,6 +228,9 @@ angular.module('starter.controllers', [])
         $scope.carica();
       });
 
+      if(typeof analytics !== "undefined") { analytics.trackEvent('Partecipazione', 'Ritirata'); }
+
+
      });
 
   };
@@ -222,6 +240,8 @@ angular.module('starter.controllers', [])
 })
 
 .controller('MailCtrl', function($scope, $timeout, $stateParams, $ionicLoading) {
+
+  if(typeof analytics !== "undefined") { analytics.trackView("Posta in " + $stateParams.direzione); }
 
   $scope.loginRequired();
   $scope.viewing = $stateParams.direzione;
@@ -310,6 +330,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('MsgCtrl', function($scope, $stateParams) {
+  if(typeof analytics !== "undefined") { analytics.trackView("Posta singolo messaggio"); }
 
   $scope.loginRequired();
   for ( i in $scope.messages.list ) {
@@ -323,6 +344,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('ActivitiesCtrl', function($scope, $location, $stateParams, $ionicLoading) {
+  if(typeof analytics !== "undefined") { analytics.trackView("Calendario attivita"); }
 
   $scope.loginRequired();
 
@@ -331,6 +353,8 @@ angular.module('starter.controllers', [])
   $ionicLoading.show({
     template: 'Caricamento in corso...'
   });
+    
+  if(typeof analytics !== "undefined") { analytics.trackEvent('Calendario', 'Caricato giorno'); }
 
 
   var day = new Date(day);
@@ -360,7 +384,8 @@ angular.module('starter.controllers', [])
 })
 
 .controller('ActivityCtrl', function($scope, $stateParams, $ionicLoading, $location, $ionicPopup) {
-  
+  if(typeof analytics !== "undefined") { analytics.trackView("Attivita singola"); }
+
   $scope.loginRequired();
 
   $scope.showPast = {
@@ -399,6 +424,9 @@ angular.module('starter.controllers', [])
         $scope.carica();
         $location.path('/app/myactivities');
       });
+
+      if(typeof analytics !== "undefined") { analytics.trackEvent('Partecipazione', 'Richiesta'); }
+
     });
   }
 
