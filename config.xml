@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.marvin375333" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="it.cri.gaia.marvin" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Gaia Marvin</name>
   <description>
        Gaia codename Marvin
   </description>
   <author email="android@gaia.cri.it" href="https://gaia.cri.it">
-      Ionic Framework Team
-    </author>
+      Croce Rossa Italiana
+  </author>
   <content src="index.html"/>
   <access origin="tel:*" launch-external="yes"/>
   <access origin="geo:*" launch-external="yes"/>
@@ -20,4 +20,7 @@
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
+
+  <icon src="icon.png" />
+
 </widget>
