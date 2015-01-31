@@ -1,5 +1,5 @@
 ## `Gaia-Marvin`
-https://github.com/AlfioEmanueleFresta/marvin/edit/master/README.md#fullscreen
+
 ![Download and install latest Phonegap build](https://cloud.githubusercontent.com/assets/621062/5986276/5b6af930-a8ea-11e4-8b3a-ae92478f351b.png)
 
 `marvin` is the development name of the new mobile app for [Gaia](https://github.com/CroceRossaCatania/gaia), part of the Gaia Project..
