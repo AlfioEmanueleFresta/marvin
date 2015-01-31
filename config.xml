@@ -2,10 +2,10 @@
 <widget id="it.cri.gaia.marvin" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Gaia Marvin</name>
   <description>
-       Gaia codename Marvin
+       "Marvin" è il nome in codice della nuova applicazione, parte del Progetto Gaia, per i dispositivi mobile.
   </description>
-  <author email="android@gaia.cri.it" href="https://gaia.cri.it">
-      Croce Rossa Italiana
+  <author email="marvin@gaia.cri.it" href="https://gaia.cri.it">
+      Croce Rossa Italiana - Il Progetto Gaia
   </author>
   <content src="index.html"/>
   <access origin="tel:*" launch-external="yes"/>
@@ -22,5 +22,9 @@
   </feature>
 
   <icon src="icon.png" />
+
+  <gap:plugin name="com.danielcwilson.plugins.googleanalytics" source="pgb" />
+  <gap:plugin name="org.apache.cordova.inappbrowser" source="plugins.cordova.io" />
+  <gap:plugin name="com.ionic.keyboard" source="plugins.cordova.io" />   
 
 </widget>
